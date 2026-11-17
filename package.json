@@ -12,6 +12,7 @@
   },
   "files": [
     "lib",
+    "scripts",
     "cordis.patch.yml",
     "README.md",
     "config.example.json"
@@ -31,5 +32,40 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "license": "MIT"
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "cordis-plugin",
+    "opencode",
+    "opencode-go",
+    "llm",
+    "llm-provider",
+    "model-router",
+    "multi-account",
+    "rate-limit",
+    "usage"
+  ],
+  "author": "Ritanlisa",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ritanlisa/dsh-opencode-go-pool.git"
+  },
+  "homepage": "https://github.com/Ritanlisa/dsh-opencode-go-pool#readme",
+  "bugs": {
+    "url": "https://github.com/Ritanlisa/dsh-opencode-go-pool/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
