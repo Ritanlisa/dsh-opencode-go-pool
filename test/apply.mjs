@@ -214,5 +214,40 @@ assert.equal(slotCalls[0].registered.options.id, 'opencode-go-pool')
 assert.equal(typeof slotCalls[0].registered.component, 'function')
 console.log('client half: ModuleLoader + slot 注册 OK →', JSON.stringify(slotCalls[0].registered.options))
 
+// 手动切换 / 解除冷却 / 同步模型：P2 新增的三个路由
+const fsPromises = await import('node:fs/promises')
+const rawConfig = JSON.parse(await fsPromises.readFile(join(dir, 'config.json'), 'utf8'))
+const firstAccount = rawConfig.accounts[0]
+process.env[firstAccount.apiKeyEnv] = 'oc_sk_test_only'
+
+const switched = await callRoute('/plugins/dsh-opencode-go-pool/switch', '', 'POST', JSON.stringify({ session: 'demo', accountId: firstAccount.id }))
+assert.equal(switched.status, 200)
+assert.equal(switched.payload.sessionAccount, firstAccount.id, 'switch 没把会话钉到目标账号')
+console.log('route switch →', firstAccount.id)
+
+const cleared = await callRoute('/plugins/dsh-opencode-go-pool/clear-cooldown', '', 'POST', JSON.stringify({ accountId: firstAccount.id, session: 'demo' }))
+assert.equal(cleared.status, 200)
+console.log('route clear-cooldown → 200')
+
+const originalFetch = globalThis.fetch
+globalThis.fetch = async () => new Response(JSON.stringify({
+  object: 'list',
+  data: [{ id: 'glm-9-test', name: 'GLM 9 Test', modalities: { input: ['text', 'image/png'] }, limit: { context: 200000, output: 8192 } }],
+}), { status: 200, headers: { 'content-type': 'application/json' } })
+let refreshed
+try {
+  refreshed = await callRoute('/plugins/dsh-opencode-go-pool/models-refresh', '', 'POST', '{}')
+} finally {
+  globalThis.fetch = originalFetch
+}
+assert.equal(refreshed.status, 200)
+assert.ok(refreshed.payload.refresh.added.includes('glm-9-test'), '新模型没并入目录')
+const afterModels = JSON.parse(await fsPromises.readFile(join(dir, 'config.json'), 'utf8'))
+assert.ok(afterModels.models.some((model) => model.id === 'glm-9-test'), 'config.json 里没有新模型')
+const addedModel = afterModels.models.find((model) => model.id === 'glm-9-test')
+assert.deepEqual(addedModel.input, ['text', 'image'], '图片能力没识别')
+assert.equal(addedModel.contextWindow, 200000)
+console.log('route models-refresh →', JSON.stringify(refreshed.payload.refresh))
+
 for (const cleanup of effects) if (typeof cleanup === 'function') cleanup()
 console.log('\nOK')

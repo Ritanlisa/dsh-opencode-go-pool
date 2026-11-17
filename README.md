@@ -146,12 +146,27 @@ pnpm add dsh-opencode-go-pool        # 或 npm i dsh-opencode-go-pool
 
 点胶囊打开面板：
 
-- **＋**（右上角）→ 填名称 + `oc_sk_…` 形式的 key → 「添加」。宿主会把 key 写进 `~/.dsh/.credentials.yaml` 的 `refs`（生成 `OPENCODE_GO_<n>_API_KEY`），再往 `config.json` 的 `accounts` 追加一条引用，**立即参与选号**。
-- 每个账号行底部：**停用 / 启用**（保留历史采样，只是不参与选号）、**删除**（点一次变「确认删除？」，再点一次才真删）。
-- 最后一个启用中的账号不允许删除；删除失败会在面板顶部显示原因。
+- 顶部四宫格：**账号数 / 当前可用（未停用、未打满、未冷却）/ 全池月用量 / 本会话账号**。
+- 每个账号一张卡：色点 + 名称 + 徽章（本会话 / 冷却中 / 月额度已满 / 已停用），右侧是本月用量百分比；
+  下面三条迷你进度条分别是 **5 小时 / 本周 / 本月** 窗口，再下面是距重置、评分、缓存命中率、本地累计花费与请求数，最右是采样曲线。
+- 卡片底部四个动作：
+  - **切到该号**：把本会话手动钉到这个账号（冷却中会顺带解除冷却）；已在用则显示「已在本会话」。
+  - **解除冷却**：清掉冷却，让它立刻重新参与选号（账号旁出现「冷却中」时才显示）。
+  - **停用 / 启用**：保留历史采样，只是不参与选号。
+  - **删除**：点一次变「确认删除？」，再点一次才真删。
+- 右上角 **同步模型**：从官方 `GET /zen/go/v1/models` 拉最新目录，**已有模型保序更新、新模型追加到末尾**
+  （官方已下架的旧条目保留，不擅自删），结果会显示「新增 N 个 / 更新 N 个」。
+- 最后一个启用中的账号不允许删除；失败原因显示在面板顶部。
 
-底层仍是一个路由 `POST /plugins/dsh-opencode-go-pool/accounts`，body 形如
-`{"action":"add","label":"Go 4","apiKey":"oc_sk_…"}` / `{"action":"toggle","id":"go-2","enabled":false}` / `{"action":"remove","id":"go-2"}`。
+底层路由：
+
+| 路由 | body | 作用 |
+| --- | --- | --- |
+| `POST /plugins/dsh-opencode-go-pool/accounts` | `{"action":"add\|toggle\|remove", …}` | 增删改账号（加号时先把 key 写进凭证库） |
+| `POST /plugins/dsh-opencode-go-pool/switch` | `{"session":"…","accountId":"go-3"}` | 手动把会话钉到该号 |
+| `POST /plugins/dsh-opencode-go-pool/clear-cooldown` | `{"accountId":"go-3"}` | 清掉该号的冷却 |
+| `POST /plugins/dsh-opencode-go-pool/models-refresh` | `{}` | 拉官方模型目录并入 `config.json` |
+
 手改 `config.json` 也一样有效（watcher 1 秒重载）。
 
 ## 失败分流
