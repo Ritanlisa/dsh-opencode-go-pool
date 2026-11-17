@@ -1,0 +1,26 @@
+# 依赖与构建产物
+node_modules/
+dist/
+coverage/
+
+# 本机私有文件：真实账号配置、状态、日志
+config.json
+state.json
+*.ndjson
+diag.json
+*.log
+
+# 本地补丁记录（内部开发笔记，不随仓库发布）
+*.local.md
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 备份文件
+*.bak
+*.bak-*
+*~

@@ -1,0 +1,6 @@
+# dsh-opencode-go-pool bundle：向组合挂宿主半边（LLM 适配器 + 用量路由）。
+# 插件自身不接收配置项（账号/模型/公式参数都在
+# ~/.dsh/opencode-go-pool/config.json 里，改完 1 秒生效，不需要重启）。
+- insert:
+    - id: opencode-go-pool
+      name: dsh-opencode-go-pool

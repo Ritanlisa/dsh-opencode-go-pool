@@ -1,0 +1,35 @@
+{
+  "name": "dsh-opencode-go-pool",
+  "version": "0.1.15",
+  "description": "OpenCode Go 多账号池：合并为单一模型提供商，按（100%-月用量）/max(距重置天数-3.5,0) 自动选号，会话粘滞、额度耗尽自动换号，并在输入框工具行显示各账号用量曲线",
+  "type": "module",
+  "main": "lib/index.mjs",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "config.example.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "license": "MIT"
+}

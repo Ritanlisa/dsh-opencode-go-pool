@@ -1,0 +1,533 @@
+{
+  "provider": {
+    "id": "opencode-go",
+    "name": "OpenCode Go"
+  },
+  "baseUrl": "https://opencode.ai/zen/go/v1",
+  "reserveDays": 3.5,
+  "usageRefreshMs": 60000,
+  "usageTimeoutMs": 8000,
+  "requestTimeoutMs": 180000,
+  "maxFailoverAttempts": 3,
+  "models": [
+    {
+      "id": "deepseek-v4.1-flash",
+      "name": "DeepSeek V4.1 Flash 1017",
+      "contextWindow": 1000000,
+      "maxTokens": 384000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "contextWindow": 1000000,
+      "maxTokens": 384000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "glm-5.3",
+      "name": "GLM-5.3",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "grok-4.7",
+      "name": "Grok 4.7",
+      "contextWindow": 500000,
+      "maxTokens": 500000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "muse-spark-1.2-contributor",
+      "name": "Muse Spark 1.2 Contributor",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "muse-spark-1.3-contributor",
+      "name": "Muse Spark 1.3 Contributor",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "glm-5.3-flash",
+      "name": "GLM-5.3-Flash",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "name": "GPT-5.6 Luna",
+      "contextWindow": 1050000,
+      "maxTokens": 128000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "contextWindow": 1050000,
+      "maxTokens": 128000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "name": "Claude Haiku 5.5",
+      "contextWindow": 1000000,
+      "maxTokens": 128000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "hy3",
+      "name": "Hy3",
+      "contextWindow": 256000,
+      "maxTokens": 128000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "hy4-preview",
+      "name": "Hy4 preview",
+      "contextWindow": 1024000,
+      "maxTokens": 64000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "kimi-k2.7-code",
+      "name": "Kimi K2.7 Code",
+      "contextWindow": 262144,
+      "maxTokens": 262144,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "mimo-v2.6-flash",
+      "name": "MiMo-V2.6-Flash",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "mimo-v2.6-pro",
+      "name": "MiMo-V2.6-Pro",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "minimax-m3",
+      "name": "MiniMax-M3",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "minimax-m3.1-flash",
+      "name": "MiniMax M3.1 Flash",
+      "contextWindow": 1000000,
+      "maxTokens": 512000,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "longcat-2.0",
+      "name": "LongCat-2.0",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "step-5-preview",
+      "name": "Step 5 Preview",
+      "contextWindow": 1000000,
+      "maxTokens": 65536,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "beam-free",
+      "name": "Beam Free",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen3.8-max",
+      "name": "Qwen3.8 Max",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "qwen3.8-flash",
+      "name": "Qwen3.8 Flash",
+      "contextWindow": 1000000,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "qwen3.7-plus",
+      "name": "Qwen3.7 Plus",
+      "contextWindow": 1000000,
+      "maxTokens": 65536,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "kimi-k3.1-pro",
+      "name": "Kimi K3.1 Pro",
+      "contextWindow": 1048576,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "iceman-contributor-free",
+      "name": "Iceman Contributor Free",
+      "contextWindow": 262144,
+      "maxTokens": 131072,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-4-argon",
+      "name": "Gemini 4 Argon",
+      "contextWindow": 1048576,
+      "maxTokens": 65536,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "hy4",
+      "name": "Hy4",
+      "contextWindow": 1048576,
+      "maxTokens": 65536,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "longcat-2.5-free",
+      "name": "LongCat 2.5 Free",
+      "contextWindow": 1000000,
+      "maxTokens": 262144,
+      "defaultEffort": "high",
+      "efforts": {
+        "off": "none",
+        "low": "low",
+        "high": "high",
+        "max": "max"
+      },
+      "input": [
+        "text",
+        "image"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "id": "go-1",
+      "label": "Go 1",
+      "apiKeyEnv": "OPENCODE_GO_API_KEY"
+    },
+    {
+      "id": "go-2",
+      "label": "Go 2",
+      "apiKeyEnv": "OPENCODE_GO_2_API_KEY"
+    },
+    {
+      "id": "go-3",
+      "label": "Go 3",
+      "apiKeyEnv": "OPENCODE_GO_3_API_KEY"
+    }
+  ]
+}
