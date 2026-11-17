@@ -1,5 +1,9 @@
 # dsh-opencode-go-pool
 
+[![npm version](https://img.shields.io/npm/v/dsh-opencode-go-pool.svg)](https://www.npmjs.com/package/dsh-opencode-go-pool)
+[![license](https://img.shields.io/npm/l/dsh-opencode-go-pool.svg)](LICENSE)
+[![node](https://img.shields.io/node/v/dsh-opencode-go-pool.svg)](package.json)
+
 把 N 个 OpenCode Go 订阅合并成 **一个** DSH 模型提供商，自动选号、会话粘滞、额度耗尽自动换号，并在输入框工具行显示各账号的用量曲线。
 
 ```
@@ -119,6 +123,16 @@ cp config.example.json ~/.dsh/opencode-go-pool/config.json   # 首次装：改�
 **密钥不放仓库**：`config.json` 里只写 `apiKeyEnv`（环境变量名或 `~/.dsh/.credentials.yaml` 的键），
 真实 key 由宿主凭据服务 / 环境变量 / 凭据文件解析。`config.json`、`state.json`、`*.ndjson`
 已在 `.gitignore` 里。
+
+### 从 npm 装（可选）
+
+```bash
+cd ~/.dsh/profiles/desktop
+pnpm add dsh-opencode-go-pool        # 或 npm i dsh-opencode-go-pool
+```
+
+然后把 `"dsh-opencode-go-pool"` 加进该 profile `package.json` 的 `dsh.profile.bundles` 数组
+（和 `scripts/install-into-desktop.mjs` 做的事一样，只是依赖写成版本号而不是 `link:`），重启 DSH。
 
 ## 加账号
 
