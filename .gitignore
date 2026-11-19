@@ -24,3 +24,9 @@ Thumbs.db
 *.bak
 *.bak-*
 *~
+
+# Windows/MSYS 控制台设备名（误出现在目录里时不要跟踪，读取会阻塞）
+CON
+PRN
+AUX
+NUL
