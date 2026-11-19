@@ -14,6 +14,8 @@ import { join } from 'node:path'
 
 const dir = mkdtempSync(join(tmpdir(), 'ocgo-apply-'))
 process.env.OPENCODE_GO_POOL_DIR = dir
+// 装配测试不启动本地翻译代理（否则会去抢 8791 端口）
+process.env.DSH_OPENCODE_POOL_NO_PROXY = '1'
 
 const plugin = await import('../lib/index.mjs')
 assert.equal(plugin.name, 'opencode-go-pool')

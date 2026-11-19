@@ -169,6 +169,54 @@ pnpm add dsh-opencode-go-pool        # 或 npm i dsh-opencode-go-pool
 
 手改 `config.json` 也一样有效（watcher 1 秒重载）。
 
+## 论文伴读联动（翻译端点自动接入）
+
+论文伴读插件（`@ggboy123/dsh-paper-reader`）的翻译走 **babeldoc** 子进程，它只认
+「OpenAI 兼容端点 + key + 模型」。为了让它用上账号池，本插件自带一个**本地 OpenAI 兼容代理**：
+
+```
+babeldoc ──POST /v1/chat/completions──▶ 127.0.0.1:8791（本插件）
+                                        ├─ 选号（沿用评分 + 冷却逻辑）
+                                        ├─ 带 x-opencode-session（缓存分桶）
+                                        └─▶ https://opencode.ai/zen/go/v1/chat/completions
+```
+
+- 启动时挑 `translateProxy.port`（默认 8791，被占用就往后找最多 10 个），只监听 `127.0.0.1`；
+- token 随机生成并落 `~/.dsh/opencode-go-pool/proxy-token`（0600），请求必须带
+  `Authorization: Bearer <token>`，否则 401；
+- 上游 429 / 5xx / 401 → 自动换下一个账号（被打的号冷却 60s），响应**原样透传**（流式/非流式都支持）；
+- 同时提供 `GET /v1/models` 方便客户端探测。
+
+启动成功后，插件会把端点写进论文伴读的 `~/.dsh/.dsh-paper-reader/translate.json`：
+
+```json
+{
+  "activeId": "opencode-go-pool",
+  "endpoints": [{
+    "id": "opencode-go-pool",
+    "label": "OpenCode Go 账号池（自动）",
+    "baseUrl": "http://127.0.0.1:8791/v1",
+    "apiKey": "<自动生成的本地 token>",
+    "model": "deepseek-v4.1-flash"
+  }]
+}
+```
+
+**所以阅读器里点「中」翻译时不用再手填端点。** 规则：
+
+- 文件里没有任何端点 → 写入并选中（开箱即用）；
+- 已经有用户手填的端点、且不是我们的 → **原样保留，不接管**；
+- 端点是我们写的（换端口后）→ 原地更新，不产生重复项。
+
+配置项（`config.json`，都可省略）：
+
+```json
+"translateProxy": { "enabled": true, "port": 8791, "model": "deepseek-v4.1-flash" }
+```
+
+`model` 留空则用账号池的第一个模型。想用官方端点而不是池子，就把 `enabled` 设 `false`，
+然后照旧手动填。
+
 ## 失败分流
 
 | 上游 | 处理 |
